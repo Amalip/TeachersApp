@@ -2,6 +2,7 @@ package com.amalip.teachers.data.source
 
 import com.amalip.teachers.core.exception.Failure
 import com.amalip.teachers.core.functional.Either
+import com.amalip.teachers.core.functional.getOrElse
 import com.amalip.teachers.core.plataform.AuthManager
 import com.amalip.teachers.core.plataform.NetworkHandler
 import com.amalip.teachers.data.api.UserApi
@@ -42,11 +43,10 @@ class UserRepositoryImpl @Inject constructor(
         )
 
         return if (result.isRight) {
-
+            authManager.user = result.getOrElse(User())
 
             result
-        }
-        else result
+        } else result
     }
 
 }
