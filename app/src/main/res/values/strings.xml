@@ -11,5 +11,7 @@
     <string name="text_do_it">Do it!</string>
 
     <string name="failure_user_not_found">User or password incorrect</string>
+    <string name="text_courses">Courses</string>
+    <string name="text_profile">Profile</string>
 
 </resources>

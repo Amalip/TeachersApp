@@ -11,6 +11,6 @@ import javax.inject.Inject
 class FindUser @Inject constructor(private val userRepository: UserRepository) :
     UseCase<User, User>() {
 
-    override suspend fun run(params: User) = userRepository.findUser(params.name, params.password)
+    override suspend fun run(params: User) = userRepository.findUser(params.enrollment, params.password)
 
 }

@@ -2,6 +2,7 @@ package com.amalip.teachers.data.api
 
 import com.amalip.teachers.domain.model.User
 import retrofit2.Call
+import retrofit2.http.Body
 import retrofit2.http.POST
 
 /**
@@ -11,6 +12,6 @@ import retrofit2.http.POST
 interface UserApi {
 
     @POST("user/login")
-    fun login(user: User): Call<User>
+    fun login(@Body user: User): Call<User>
 
 }

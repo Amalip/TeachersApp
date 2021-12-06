@@ -23,7 +23,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         setProperty("archivesBaseName", "Teachers_v$versionCode($versionName)")
-        buildConfigField "String", "API_BASE_URL", "\"http://localhost:8080/\""
+        buildConfigField "String", "API_BASE_URL", "\"http://192.168.42.168:8080/\""
     }
 
     dataBinding {
@@ -52,14 +52,14 @@ android {
             dimension "teachers"
             versionNameSuffix "-dev"
             ext {
-                buildConfigField "String", "API_BASE_URL", "\"http://localhost:8080/\""
+                buildConfigField "String", "API_BASE_URL", "\"http://192.168.42.168:8080/\""
             }
         }
         prod {
             dimension "teachers"
             versionNameSuffix ""
             ext {
-                buildConfigField "String", "API_BASE_URL", "\"http://localhost:8080/\""
+                buildConfigField "String", "API_BASE_URL", "\"http://192.168.42.168:8080/\""
             }
         }
     }
@@ -81,7 +81,7 @@ dependencies {
     //Moshi
     implementation 'com.squareup.moshi:moshi:1.12.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    kapt 'com.squareup.moshi:moshi-kotlin-codegen:1.12.0'
+    kapt("com.squareup.moshi:moshi-kotlin-codegen:1.12.0")
 
     //Hilt
     implementation 'com.google.dagger:hilt-android:2.40.4'

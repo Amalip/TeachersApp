@@ -1,5 +1,6 @@
 package com.amalip.teachers.data.source
 
+import com.amalip.teachers.core.enums.UserLevel
 import com.amalip.teachers.core.exception.Failure
 import com.amalip.teachers.core.functional.Either
 import com.amalip.teachers.core.functional.getOrElse
@@ -9,6 +10,7 @@ import com.amalip.teachers.data.api.UserApi
 import com.amalip.teachers.domain.model.User
 import com.amalip.teachers.domain.repository.UserRepository
 import com.amalip.teachers.framework.api.ApiRequest
+import com.amalip.teachers.presentation.login.LoginFailure
 import javax.inject.Inject
 
 /**
@@ -37,7 +39,7 @@ class UserRepositoryImpl @Inject constructor(
     override fun findUser(enrollment: String, password: String): Either<Failure, User> {
         val result = makeRequest(
             networkHandler,
-            userApi.login(User(enrollment = enrollment, password = password)),
+            userApi.login(User(enrollment = enrollment, password = password, level = UserLevel.TEACHER.code)),
             { it },
             User()
         )
@@ -46,7 +48,7 @@ class UserRepositoryImpl @Inject constructor(
             authManager.user = result.getOrElse(User())
 
             result
-        } else result
+        } else Either.Left(LoginFailure.NotFound)
     }
 
 }

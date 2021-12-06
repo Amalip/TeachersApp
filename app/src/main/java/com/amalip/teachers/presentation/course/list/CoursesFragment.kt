@@ -1,15 +1,14 @@
-package com.amalip.teachers.presentation.login
+package com.amalip.teachers.presentation.course.list
 
 import android.os.Bundle
 import android.view.View
-import android.view.View.GONE
 import androidx.fragment.app.viewModels
 import com.amalip.teachers.R
 import com.amalip.teachers.core.extension.failure
 import com.amalip.teachers.core.extension.observe
 import com.amalip.teachers.core.presentation.BaseFragment
 import com.amalip.teachers.core.presentation.BaseViewState
-import com.amalip.teachers.databinding.LoginFragmentBinding
+import com.amalip.teachers.databinding.CoursesFragmentBinding
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.WithFragmentBindings
 import kotlinx.coroutines.DelicateCoroutinesApi
@@ -17,43 +16,31 @@ import kotlinx.coroutines.DelicateCoroutinesApi
 @AndroidEntryPoint
 @WithFragmentBindings
 @DelicateCoroutinesApi
-class LoginFragment : BaseFragment(R.layout.login_fragment) {
+class CoursesFragment : BaseFragment(R.layout.courses_fragment) {
 
-    private lateinit var binding: LoginFragmentBinding
+    private lateinit var binding: CoursesFragmentBinding
 
-    private val loginViewModel by viewModels<LoginViewModel>()
+    private val coursesViewModel by viewModels<CoursesViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        loginViewModel.apply {
+        coursesViewModel.apply {
             observe(state, ::onViewStateChanged)
             failure(failure, ::handleFailure)
         }
-
     }
 
     override fun onViewStateChanged(state: BaseViewState?) {
         super.onViewStateChanged(state)
         when (state) {
-            is LoginViewState.UserFound ->
-                navController.navigate(LoginFragmentDirections.actionLoginFragmentToCoursesFragment())
+
         }
     }
 
     override fun setBinding(view: View) {
-        binding = LoginFragmentBinding.bind(view)
 
-        binding.apply {
-            lifecycleOwner = this@LoginFragment
-
-            vm = loginViewModel
-
-            btnDoLogin.setOnClickListener { loginViewModel.doLogin() }
-
-        }
-
-        baseActivity.setBottomNavVisibility(GONE)
+        baseActivity.setBottomNavVisibility(View.VISIBLE)
     }
 
 }
