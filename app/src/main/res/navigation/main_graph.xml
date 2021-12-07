@@ -18,10 +18,26 @@
         android:id="@+id/coursesFragment"
         android:name="com.amalip.teachers.presentation.course.list.CoursesFragment"
         android:label="courses_fragment"
-        tools:layout="@layout/courses_fragment" />
+        tools:layout="@layout/courses_fragment">
+        <action
+            android:id="@+id/action_coursesFragment_to_courseDetailFragment"
+            app:destination="@id/courseDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.amalip.teachers.presentation.profile.ProfileFragment"
         android:label="profile_fragment"
         tools:layout="@layout/profile_fragment" />
+    <fragment
+        android:id="@+id/courseDetailFragment"
+        android:name="com.amalip.teachers.presentation.course.detail.CourseDetailFragment"
+        android:label="course_detail_fragment"
+        tools:layout="@layout/course_detail_fragment">
+
+        <argument
+            android:name="course"
+            app:argType="com.amalip.teachers.domain.model.Course"
+            app:nullable="false" />
+
+    </fragment>
 </navigation>

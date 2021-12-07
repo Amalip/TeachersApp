@@ -1,16 +1,17 @@
-package com.amalip.teachers.presentation.course.list
+package com.amalip.teachers.presentation.course.detail
 
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import com.amalip.teachers.R
 import com.amalip.teachers.core.extension.failure
 import com.amalip.teachers.core.extension.observe
 import com.amalip.teachers.core.presentation.BaseFragment
 import com.amalip.teachers.core.presentation.BaseViewState
-import com.amalip.teachers.databinding.CoursesFragmentBinding
-import com.amalip.teachers.domain.model.Course
+import com.amalip.teachers.databinding.CourseDetailFragmentBinding
+import com.amalip.teachers.domain.model.User
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.WithFragmentBindings
 import kotlinx.coroutines.DelicateCoroutinesApi
@@ -18,17 +19,18 @@ import kotlinx.coroutines.DelicateCoroutinesApi
 @AndroidEntryPoint
 @WithFragmentBindings
 @DelicateCoroutinesApi
-class CoursesFragment : BaseFragment(R.layout.courses_fragment) {
+class CourseDetailFragment : BaseFragment(R.layout.course_detail_fragment) {
 
-    private lateinit var binding: CoursesFragmentBinding
+    private lateinit var binding: CourseDetailFragmentBinding
 
-    private val coursesViewModel by viewModels<CoursesViewModel>()
-    private val adapter: CoursesAdapter by lazy { CoursesAdapter() }
+    private val courseDetailViewModel by viewModels<CourseDetailViewModel>()
+    private val adapter: StudentsAdapter by lazy { StudentsAdapter() }
+    private val args: CourseDetailFragmentArgs by navArgs()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        coursesViewModel.apply {
+        courseDetailViewModel.apply {
             observe(state, ::onViewStateChanged)
             failure(failure, ::handleFailure)
         }
@@ -37,38 +39,36 @@ class CoursesFragment : BaseFragment(R.layout.courses_fragment) {
     override fun onViewStateChanged(state: BaseViewState?) {
         super.onViewStateChanged(state)
         when (state) {
-            is CoursesViewState.CoursesReceived -> setUpAdapter(state.courses)
+            is CourseViewState.StudentsReceived -> setUpAdapter(state.students)
         }
     }
 
-    private fun setUpAdapter(course: List<Course>) {
+    private fun setUpAdapter(course: List<User>) {
         binding.emptyView.isVisible = course.isEmpty()
 
         adapter.addData(course)
 
         adapter.setListener {
-            navController.navigate(
-                CoursesFragmentDirections.actionCoursesFragmentToCourseDetailFragment(
-                    it
-                )
-            )
+
         }
 
-        binding.rcCourses.apply {
+        binding.rcStudents.apply {
             isVisible = course.isNotEmpty()
-            adapter = this@CoursesFragment.adapter
+            adapter = this@CourseDetailFragment.adapter
         }
 
     }
 
     override fun setBinding(view: View) {
-        binding = CoursesFragmentBinding.bind(view)
+        binding = CourseDetailFragmentBinding.bind(view)
 
         binding.lifecycleOwner = this
 
         binding.apply {
+            course = args.course
+
             swpRefresh.setOnRefreshListener {
-                coursesViewModel.getCoursesByUser()
+                //courseDetailViewModel.getCoursesByUser()
                 swpRefresh.isRefreshing = false
             }
         }

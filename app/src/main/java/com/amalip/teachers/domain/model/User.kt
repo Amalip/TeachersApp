@@ -19,4 +19,9 @@ data class User(
     val password: String = "",
     val level: Int = 0
 
-)
+) {
+
+    val fullName: String
+        get() = "$name $firstLastname $secondLastname"
+
+}

@@ -1,7 +1,10 @@
 package com.amalip.teachers.domain.model
 
+import android.os.Parcelable
 import com.squareup.moshi.JsonClass
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
 @JsonClass(generateAdapter = true)
 data class Course(
 
@@ -12,4 +15,4 @@ data class Course(
     var scheduleList: MutableList<String> = mutableListOf(),
     var grades: MutableList<Int> = mutableListOf()
 
-)
+) : Parcelable

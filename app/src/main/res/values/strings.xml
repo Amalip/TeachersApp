@@ -10,8 +10,13 @@
     <string name="text_login">Login</string>
     <string name="text_do_it">Do it!</string>
 
+    <string name="text_no_info">There is no information</string>
+    <string name="text_query_hint">Course name</string>
+
     <string name="failure_user_not_found">User or password incorrect</string>
     <string name="text_courses">Courses</string>
     <string name="text_profile">Profile</string>
+
+    <string name="failure_courses_not_found">We could not find the courses</string>
 
 </resources>
