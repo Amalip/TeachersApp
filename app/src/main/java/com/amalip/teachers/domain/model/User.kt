@@ -10,11 +10,11 @@ import com.squareup.moshi.JsonClass
 data class User(
 
     val id: Int = 0,
-    val name: String = "",
-    val firstLastname: String = "",
-    val secondLastname: String = "",
-    val email: String = "",
-    val picture: String = "",
+    var name: String = "",
+    var firstLastname: String = "",
+    var secondLastname: String = "",
+    var email: String = "",
+    var picture: String = "",
     val enrollment: String = "",
     val password: String = "",
     val level: Int = 0

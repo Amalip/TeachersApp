@@ -18,4 +18,6 @@ interface UserRepository {
 
     fun getStudentsByCourse(courseId: Int): Either<Failure, List<User>>
 
+    fun updateUser(user: User): Either<Failure, Boolean>
+
 }

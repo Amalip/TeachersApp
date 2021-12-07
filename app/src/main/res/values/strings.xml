@@ -23,4 +23,13 @@
 
     <string name="failure_courses_not_found">We could not find the courses</string>
 
+    <string name="failure_complete_form">Fill the form</string>
+    <string name="text_hint_name">Name</string>
+    <string name="text_hint_first_lastname">First lastname</string>
+    <string name="text_hint_second_last_name">Second last name</string>
+    <string name="text_hint_email">Email</string>
+
+    <string name="failure_could_not_update">We could not update the information</string>
+    <string name="text_success">Success</string>
+
 </resources>

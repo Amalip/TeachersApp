@@ -7,8 +7,8 @@
     <data>
 
         <variable
-            name="user"
-            type="com.amalip.teachers.domain.model.User" />
+            name="vm"
+            type="com.amalip.teachers.presentation.profile.ProfileViewModel" />
 
     </data>
 
@@ -18,7 +18,7 @@
 
         <ImageView
             android:id="@+id/imgUser"
-            loadFromURLCircular="@{user.picture}"
+            loadFromURLCircular="@{vm.image}"
             android:layout_width="180dp"
             android:layout_height="180dp"
             android:layout_margin="16dp"
@@ -41,8 +41,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
+            android:hint="@string/text_hint_name"
             android:inputType="textPersonName"
-            android:text="@{user.name}"
+            android:text="@={vm.user.name}"
             app:layout_constraintBottom_toTopOf="@id/edtFirstLastname"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -52,8 +53,9 @@
             android:id="@+id/edtFirstLastname"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:hint="@string/text_hint_first_lastname"
             android:inputType="textPersonName"
-            android:text="@{user.firstLastname}"
+            android:text="@={vm.user.firstLastname}"
             app:layout_constraintBottom_toTopOf="@id/edtSecondLastname"
             app:layout_constraintEnd_toEndOf="@id/edtName"
             app:layout_constraintStart_toStartOf="@id/edtName"
@@ -63,8 +65,9 @@
             android:id="@+id/edtSecondLastname"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:hint="@string/text_hint_second_last_name"
             android:inputType="textPersonName"
-            android:text="@{user.secondLastname}"
+            android:text="@={vm.user.secondLastname}"
             app:layout_constraintBottom_toTopOf="@id/edtEmail"
             app:layout_constraintEnd_toEndOf="@id/edtName"
             app:layout_constraintStart_toStartOf="@id/edtName"
@@ -74,8 +77,9 @@
             android:id="@+id/edtEmail"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:hint="@string/text_hint_email"
             android:inputType="textEmailAddress"
-            android:text="@{user.email}"
+            android:text="@={vm.user.email}"
             app:layout_constraintBottom_toTopOf="@id/btnEdit"
             app:layout_constraintEnd_toEndOf="@id/edtName"
             app:layout_constraintStart_toStartOf="@id/edtName"

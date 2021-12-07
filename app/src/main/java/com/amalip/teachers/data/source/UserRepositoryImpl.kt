@@ -12,6 +12,7 @@ import com.amalip.teachers.domain.repository.UserRepository
 import com.amalip.teachers.framework.api.ApiRequest
 import com.amalip.teachers.presentation.course.detail.CourseFailure
 import com.amalip.teachers.presentation.login.LoginFailure
+import com.amalip.teachers.presentation.profile.ProfileFailure
 import javax.inject.Inject
 
 /**
@@ -65,6 +66,17 @@ class UserRepositoryImpl @Inject constructor(
 
         return if (result.isRight) result
         else Either.Left(CourseFailure.NotFound)
+    }
+
+    override fun updateUser(user: User): Either<Failure, Boolean> {
+        val result = makeRequest(networkHandler, userApi.updateUser(user), {  }, Unit)
+
+        return if (result.isRight) {
+            authManager.user = user
+
+            Either.Right(true)
+        }
+        else Either.Left(ProfileFailure.CouldNotUpdate)
     }
 
 }
