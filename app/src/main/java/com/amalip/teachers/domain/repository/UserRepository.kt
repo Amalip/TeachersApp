@@ -16,4 +16,6 @@ interface UserRepository {
 
     fun findUser(enrollment: String, password: String): Either<Failure, User>
 
+    fun getStudentsByCourse(courseId: Int): Either<Failure, List<User>>
+
 }

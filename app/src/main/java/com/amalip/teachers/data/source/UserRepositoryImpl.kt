@@ -10,6 +10,7 @@ import com.amalip.teachers.data.api.UserApi
 import com.amalip.teachers.domain.model.User
 import com.amalip.teachers.domain.repository.UserRepository
 import com.amalip.teachers.framework.api.ApiRequest
+import com.amalip.teachers.presentation.course.detail.CourseFailure
 import com.amalip.teachers.presentation.login.LoginFailure
 import javax.inject.Inject
 
@@ -39,7 +40,13 @@ class UserRepositoryImpl @Inject constructor(
     override fun findUser(enrollment: String, password: String): Either<Failure, User> {
         val result = makeRequest(
             networkHandler,
-            userApi.login(User(enrollment = enrollment, password = password, level = UserLevel.TEACHER.code)),
+            userApi.login(
+                User(
+                    enrollment = enrollment,
+                    password = password,
+                    level = UserLevel.TEACHER.code
+                )
+            ),
             { it },
             User()
         )
@@ -49,6 +56,15 @@ class UserRepositoryImpl @Inject constructor(
 
             result
         } else Either.Left(LoginFailure.NotFound)
+    }
+
+    override fun getStudentsByCourse(courseId: Int): Either<Failure, List<User>> {
+        val result = makeRequest(
+            networkHandler, userApi.getStudentsByCourse(courseId), { it }, emptyList()
+        )
+
+        return if (result.isRight) result
+        else Either.Left(CourseFailure.NotFound)
     }
 
 }

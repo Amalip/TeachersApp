@@ -3,6 +3,7 @@ package com.amalip.teachers.presentation.course.detail
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
@@ -35,6 +36,8 @@ class CourseDetailFragment : BaseFragment(R.layout.course_detail_fragment) {
         courseDetailViewModel.apply {
             observe(state, ::onViewStateChanged)
             failure(failure, ::handleFailure)
+
+            getCoursesByUser(args.course.id)
         }
     }
 
@@ -70,9 +73,21 @@ class CourseDetailFragment : BaseFragment(R.layout.course_detail_fragment) {
             course = args.course
 
             swpRefresh.setOnRefreshListener {
-                //courseDetailViewModel.getCoursesByUser()
+                courseDetailViewModel.getCoursesByUser(args.course.id)
                 swpRefresh.isRefreshing = false
             }
+
+            svStudents.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    courseDetailViewModel.searchCourse(query ?: "")
+                    return true
+                }
+
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    courseDetailViewModel.searchCourse(newText ?: "")
+                    return true
+                }
+            })
         }
 
         setScheduleList()
