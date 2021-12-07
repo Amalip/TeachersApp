@@ -12,6 +12,7 @@
 
     <string name="text_no_info">There is no information</string>
     <string name="text_query_hint">Course name</string>
+    <string name="text_students_query_hint">Student name</string>
 
     <string name="failure_user_not_found">User or password incorrect</string>
     <string name="text_courses">Courses</string>

@@ -1,5 +1,6 @@
 package com.amalip.teachers.presentation.course.detail
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
@@ -12,6 +13,7 @@ import com.amalip.teachers.core.presentation.BaseFragment
 import com.amalip.teachers.core.presentation.BaseViewState
 import com.amalip.teachers.databinding.CourseDetailFragmentBinding
 import com.amalip.teachers.domain.model.User
+import com.google.android.material.chip.Chip
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.WithFragmentBindings
 import kotlinx.coroutines.DelicateCoroutinesApi
@@ -73,7 +75,21 @@ class CourseDetailFragment : BaseFragment(R.layout.course_detail_fragment) {
             }
         }
 
-        baseActivity.setBottomNavVisibility(View.VISIBLE)
+        setScheduleList()
+
+        baseActivity.setBottomNavVisibility(View.GONE)
+    }
+
+    @SuppressLint("UseCompatLoadingForDrawables")
+    private fun setScheduleList() = binding.apply {
+        chgSchedules.removeAllViews()
+        args.course.scheduleList.forEach {
+            chgSchedules.addView(Chip(context).apply {
+                text = it
+                chipIcon = resources.getDrawable(R.drawable.ic_clock, null)
+            })
+        }
+
     }
 
 }

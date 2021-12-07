@@ -42,7 +42,7 @@ class CoursesAdapter :
         fun bind(data: Course, listener: (course: Course) -> Unit) {
             binding.apply {
                 course = data
-                root.setOnClickListener { listener(data) }
+                row.setOnClickListener { listener(data) }
             }
         }
     }

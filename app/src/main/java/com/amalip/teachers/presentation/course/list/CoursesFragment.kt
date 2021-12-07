@@ -2,6 +2,7 @@ package com.amalip.teachers.presentation.course.list
 
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.widget.SearchView
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import com.amalip.teachers.R
@@ -32,6 +33,16 @@ class CoursesFragment : BaseFragment(R.layout.courses_fragment) {
             observe(state, ::onViewStateChanged)
             failure(failure, ::handleFailure)
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        coursesViewModel.getCoursesByUser()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        binding.svCourses.setQuery("", false)
     }
 
     override fun onViewStateChanged(state: BaseViewState?) {
@@ -71,6 +82,19 @@ class CoursesFragment : BaseFragment(R.layout.courses_fragment) {
                 coursesViewModel.getCoursesByUser()
                 swpRefresh.isRefreshing = false
             }
+
+            svCourses.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
+                    coursesViewModel.searchCourse(query ?: "")
+                    return true
+                }
+
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    coursesViewModel.searchCourse(newText ?: "")
+                    return true
+                }
+            })
+
         }
 
         baseActivity.setBottomNavVisibility(View.VISIBLE)
