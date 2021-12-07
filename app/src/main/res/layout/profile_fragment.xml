@@ -1,16 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".presentation.profile.ProfileFragment">
+
+    <data>
+
+        <variable
+            name="user"
+            type="com.amalip.teachers.domain.model.User" />
+
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <ImageView
+            android:id="@+id/imgUser"
+            loadFromURLCircular="@{user.picture}"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_margin="16dp"
+            app:layout_constraintBottom_toTopOf="@id/edtName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@tools:sample/avatars" />
+
+        <ImageView
+            android:id="@+id/imgChange"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_change"
+            app:layout_constraintBottom_toBottomOf="@id/imgUser"
+            app:layout_constraintEnd_toEndOf="@id/imgUser" />
+
+        <EditText
+            android:id="@+id/edtName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:inputType="textPersonName"
+            android:text="@{user.name}"
+            app:layout_constraintBottom_toTopOf="@id/edtFirstLastname"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imgUser" />
+
+        <EditText
+            android:id="@+id/edtFirstLastname"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:text="@{user.firstLastname}"
+            app:layout_constraintBottom_toTopOf="@id/edtSecondLastname"
+            app:layout_constraintEnd_toEndOf="@id/edtName"
+            app:layout_constraintStart_toStartOf="@id/edtName"
+            app:layout_constraintTop_toBottomOf="@id/edtName" />
+
+        <EditText
+            android:id="@+id/edtSecondLastname"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:text="@{user.secondLastname}"
+            app:layout_constraintBottom_toTopOf="@id/edtEmail"
+            app:layout_constraintEnd_toEndOf="@id/edtName"
+            app:layout_constraintStart_toStartOf="@id/edtName"
+            app:layout_constraintTop_toBottomOf="@id/edtFirstLastname" />
+
+        <EditText
+            android:id="@+id/edtEmail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:text="@{user.email}"
+            app:layout_constraintBottom_toTopOf="@id/btnEdit"
+            app:layout_constraintEnd_toEndOf="@id/edtName"
+            app:layout_constraintStart_toStartOf="@id/edtName"
+            app:layout_constraintTop_toBottomOf="@id/edtSecondLastname" />
+
+        <Button
+            android:id="@+id/btnEdit"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/text_edit"
+            app:layout_constraintBottom_toTopOf="@id/txvLogout"
+            app:layout_constraintEnd_toEndOf="@id/edtEmail"
+            app:layout_constraintStart_toStartOf="@id/edtEmail"
+            app:layout_constraintTop_toBottomOf="@id/edtEmail" />
+
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Hello" />
+            android:id="@+id/txvLogout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/text_logout"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/btnEdit"
+            app:layout_constraintStart_toStartOf="@id/btnEdit"
+            app:layout_constraintTop_toBottomOf="@id/btnEdit" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

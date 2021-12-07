@@ -31,11 +31,13 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
     </fragment>
+
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.amalip.teachers.presentation.profile.ProfileFragment"
         android:label="profile_fragment"
         tools:layout="@layout/profile_fragment" />
+
     <fragment
         android:id="@+id/courseDetailFragment"
         android:name="com.amalip.teachers.presentation.course.detail.CourseDetailFragment"

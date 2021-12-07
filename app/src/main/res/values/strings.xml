@@ -8,7 +8,10 @@
     <string name="text_password">Password</string>
     <string name="text_enrollment">Enrollment</string>
     <string name="text_login">Login</string>
+    <string name="text_logout">Logout</string>
     <string name="text_do_it">Do it!</string>
+
+    <string name="text_edit">Edit</string>
 
     <string name="text_no_info">There is no information</string>
     <string name="text_query_hint">Course name</string>
