@@ -42,7 +42,7 @@ class StudentsAdapter :
         fun bind(data: User, listener: (user: User) -> Unit) {
             binding.apply {
                 user = data
-                root.setOnClickListener { listener(data) }
+                mcStudent.setOnClickListener { listener(data) }
             }
         }
     }

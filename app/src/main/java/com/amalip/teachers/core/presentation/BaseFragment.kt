@@ -84,7 +84,9 @@ abstract class BaseFragment(@LayoutRes layoutId: Int) : Fragment(layoutId), OnFa
             is Failure.NetworkConnection -> {
                 failure.defaultMessage?.let { showToast(getString(it)) }
             } //showToast(getString(R.string.error_no_internet_connection))
-            is Failure.FeatureFailure -> failure.defaultMessage?.let { showToast(getString(it)) }
+            is Failure.FeatureFailure -> failure.defaultMessage?.let {
+                showToast(getString(it, failure.extra))
+            }
         }
     }
 

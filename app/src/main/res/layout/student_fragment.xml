@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".presentation.student.StudentFragment">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.amalip.teachers.presentation.student.StudentViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imgUser"
+            loadFromURLCircular="@{vm.user.picture}"
+            android:layout_width="180dp"
+            android:layout_height="180dp"
+            android:layout_margin="16dp"
+            app:layout_constraintBottom_toTopOf="@id/txvName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/txvName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="@{vm.user.fullName}"
+            app:drawableStartCompat="@drawable/ic_account"
+            app:layout_constraintBottom_toTopOf="@+id/edtGrade1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imgUser" />
+
+        <EditText
+            android:id="@+id/edtGrade1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_grades"
+            android:drawablePadding="5dp"
+            android:hint="@string/text_grade_1"
+            android:inputType="numberDecimal"
+            android:text="@={vm.grade1}"
+            app:layout_constraintBottom_toTopOf="@id/edtGrade2"
+            app:layout_constraintEnd_toEndOf="@id/txvName"
+            app:layout_constraintStart_toStartOf="@id/txvName"
+            app:layout_constraintTop_toBottomOf="@id/txvName" />
+
+        <EditText
+            android:id="@+id/edtGrade2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_grades"
+            android:drawablePadding="5dp"
+            android:hint="@string/text_grade_2"
+            android:text="@={vm.grade2}"
+            app:layout_constraintBottom_toTopOf="@id/edtGrade3"
+            app:layout_constraintEnd_toEndOf="@id/txvName"
+            app:layout_constraintStart_toStartOf="@id/txvName"
+            app:layout_constraintTop_toBottomOf="@id/edtGrade1" />
+
+        <EditText
+            android:id="@+id/edtGrade3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_grades"
+            android:drawablePadding="5dp"
+            android:hint="@string/text_grade_3"
+            android:text="@={vm.grade3}"
+            app:layout_constraintBottom_toTopOf="@id/btnUpdate"
+            app:layout_constraintEnd_toEndOf="@id/txvName"
+            app:layout_constraintStart_toStartOf="@id/txvName"
+            app:layout_constraintTop_toBottomOf="@id/edtGrade2" />
+
+        <Button
+            android:id="@+id/btnUpdate"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/text_set_grades"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/txvName"
+            app:layout_constraintStart_toStartOf="@id/txvName"
+            app:layout_constraintTop_toBottomOf="@id/edtGrade3" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -31,5 +31,12 @@
 
     <string name="failure_could_not_update">We could not update the information</string>
     <string name="text_success">Success</string>
+    <string name="text_set_grades">Set grade(s)</string>
+    <string name="text_grade_3">Grade 3</string>
+    <string name="text_grade_2">Grade 2</string>
+    <string name="text_grade_1">Grade 1</string>
+
+    <string name="failure_bad_grade_for">Incorrect grade for partial %1$d</string>
+    <string name="text_updated_grade">Success update grade for partial %1$d</string>
 
 </resources>

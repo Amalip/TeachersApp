@@ -1,11 +1,14 @@
 package com.amalip.teachers.domain.model
 
+import android.os.Parcelable
 import com.squareup.moshi.JsonClass
+import kotlinx.parcelize.Parcelize
 
 /**
  * Created by Amalip on 12/5/2021.
  */
 
+@Parcelize
 @JsonClass(generateAdapter = true)
 data class User(
 
@@ -19,7 +22,7 @@ data class User(
     val password: String = "",
     val level: Int = 0
 
-) {
+) : Parcelable {
 
     val fullName: String
         get() = "$name $firstLastname $secondLastname"

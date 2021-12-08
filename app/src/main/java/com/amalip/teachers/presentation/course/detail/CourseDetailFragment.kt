@@ -14,6 +14,7 @@ import com.amalip.teachers.core.presentation.BaseFragment
 import com.amalip.teachers.core.presentation.BaseViewState
 import com.amalip.teachers.databinding.CourseDetailFragmentBinding
 import com.amalip.teachers.domain.model.User
+import com.amalip.teachers.presentation.course.list.CoursesFragmentDirections
 import com.google.android.material.chip.Chip
 import dagger.hilt.android.AndroidEntryPoint
 import dagger.hilt.android.WithFragmentBindings
@@ -54,7 +55,11 @@ class CourseDetailFragment : BaseFragment(R.layout.course_detail_fragment) {
         adapter.addData(course)
 
         adapter.setListener {
-
+            navController.navigate(
+                CourseDetailFragmentDirections.actionCourseDetailFragmentToStudentFragment(
+                    it, args.course.id
+                )
+            )
         }
 
         binding.rcStudents.apply {

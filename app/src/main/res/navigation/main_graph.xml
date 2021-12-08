@@ -48,6 +48,30 @@
             android:name="course"
             app:argType="com.amalip.teachers.domain.model.Course"
             app:nullable="false" />
+        <action
+            android:id="@+id/action_courseDetailFragment_to_studentFragment"
+            app:destination="@id/studentFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/studentFragment"
+        android:name="com.amalip.teachers.presentation.student.StudentFragment"
+        android:label="student_fragment"
+        tools:layout="@layout/student_fragment">
+
+        <argument
+            android:name="student"
+            app:argType="com.amalip.teachers.domain.model.User"
+            app:nullable="false" />
+
+        <argument
+            android:name="courseId"
+            app:argType="integer"
+            app:nullable="false" />
 
     </fragment>
 </navigation>

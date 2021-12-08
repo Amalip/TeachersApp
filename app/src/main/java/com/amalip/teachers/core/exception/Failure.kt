@@ -18,5 +18,5 @@ sealed class Failure : Throwable() {
     object SilenceFail: Failure()
 
     /** * Extend this class for feature specific failures.*/
-    abstract class FeatureFailure(@StringRes val defaultMessage: Int? = null) : Failure()
+    abstract class FeatureFailure(@StringRes val defaultMessage: Int? = null, val extra: Any? = null) : Failure()
 }

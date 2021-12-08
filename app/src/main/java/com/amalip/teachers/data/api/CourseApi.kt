@@ -19,4 +19,10 @@ interface CourseApi {
     @PUT("course")
     fun setGrade(@Body setGradeRequest: SetGradeRequest): Call<Unit>
 
+    @GET("course/byId")
+    fun getCoursesByIdAndUser(
+        @Query("courseId") courseId: Int,
+        @Query("userId") userId: Int
+    ): Call<Course>
+
 }

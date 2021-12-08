@@ -10,5 +10,6 @@ import com.amalip.teachers.core.exception.Failure
 class CoursesFailure {
 
     object NotFound : Failure.FeatureFailure(R.string.failure_courses_not_found)
+    object CouldNotUpdate : Failure.FeatureFailure(R.string.failure_could_not_update)
 
 }
