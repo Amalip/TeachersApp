@@ -75,7 +75,7 @@ class CoursesFragment : BaseFragment(R.layout.courses_fragment) {
     override fun setBinding(view: View) {
         binding = CoursesFragmentBinding.bind(view)
 
-        binding.lifecycleOwner = this
+        binding.lifecycleOwner = viewLifecycleOwner
 
         binding.apply {
             swpRefresh.setOnRefreshListener {

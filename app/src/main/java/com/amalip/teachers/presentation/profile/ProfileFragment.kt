@@ -43,7 +43,7 @@ class ProfileFragment : BaseFragment(R.layout.profile_fragment) {
     override fun setBinding(view: View) {
         binding = ProfileFragmentBinding.bind(view)
 
-        binding.lifecycleOwner = this
+        binding.lifecycleOwner = viewLifecycleOwner
 
         binding.apply {
             vm = profileViewModel

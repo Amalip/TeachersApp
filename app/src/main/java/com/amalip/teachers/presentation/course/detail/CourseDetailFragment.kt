@@ -72,7 +72,7 @@ class CourseDetailFragment : BaseFragment(R.layout.course_detail_fragment) {
     override fun setBinding(view: View) {
         binding = CourseDetailFragmentBinding.bind(view)
 
-        binding.lifecycleOwner = this
+        binding.lifecycleOwner = viewLifecycleOwner
 
         binding.apply {
             course = args.course

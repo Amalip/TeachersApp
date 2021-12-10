@@ -52,7 +52,7 @@ class StudentFragment : BaseFragment(R.layout.student_fragment) {
     override fun setBinding(view: View) {
         binding = StudentFragmentBinding.bind(view)
 
-        binding.lifecycleOwner = this
+        binding.lifecycleOwner = viewLifecycleOwner
 
         binding.apply {
             vm = studentViewModel
