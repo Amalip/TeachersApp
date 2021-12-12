@@ -40,35 +40,40 @@ class StudentViewModel @Inject constructor(
     }
 
     fun setGrade(courseId: Int) {
-        grades.forEachIndexed { index, grade ->
-            val gradeValue = when (index) {
-                0 -> grade1.value?.toDouble() ?: 0.0
-                1 -> grade2.value?.toDouble() ?: 0.0
-                else -> grade3.value?.toDouble() ?: 0.0
-            }
+        try {
+            grades.forEachIndexed { index, grade ->
+                val gradeValue = when (index) {
+                    0 -> grade1.value?.toDouble() ?: 0.0
+                    1 -> grade2.value?.toDouble() ?: 0.0
+                    else -> grade3.value?.toDouble() ?: 0.0
+                }
 
-            val partial = index + 1
+                val partial = index + 1
 
-            if (grade != gradeValue) {
-                if (gradeValue > 10 || gradeValue < 0)
-                    failure.value =
-                        object : Failure.FeatureFailure(R.string.failure_bad_grade_for, partial) {}
-                else
-                    setGrade(
-                        SetGradeRequest(
-                            user.value?.id ?: 0,
-                            courseId,
-                            gradeValue,
-                            partial
-                        )
-                    ) {
-                        it.fold(::handleFailure) {
-                            state.value = StudentViewState.UpdatedGradeForPartial(partial)
+                if (grade != gradeValue) {
+                    if (gradeValue > 10 || gradeValue < 0)
+                        failure.value =
+                            object :
+                                Failure.FeatureFailure(R.string.failure_bad_grade_for, partial) {}
+                    else
+                        setGrade(
+                            SetGradeRequest(
+                                user.value?.id ?: 0,
+                                courseId,
+                                gradeValue,
+                                partial
+                            )
+                        ) {
+                            it.fold(::handleFailure) {
+                                state.value = StudentViewState.UpdatedGradeForPartial(partial)
 
-                            true
+                                true
+                            }
                         }
-                    }
+                }
             }
+        } catch (e: Exception) {
+            failure.value = StudentFailure.CompleteForm
         }
     }
 

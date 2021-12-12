@@ -1,5 +1,6 @@
 package com.amalip.teachers.presentation.profile
 
+import android.util.Patterns
 import androidx.lifecycle.MutableLiveData
 import com.amalip.teachers.core.interactor.UseCase
 import com.amalip.teachers.core.presentation.BaseViewModel
@@ -50,7 +51,7 @@ class ProfileViewModel @Inject constructor(
         if (data.name.isNotEmpty()
             && data.firstLastname.isNotEmpty()
             && data.secondLastname.isNotEmpty()
-            && data.email.isNotEmpty()
+            && data.email.isNotEmpty() && Patterns.EMAIL_ADDRESS.matcher(data.email).matches()
         ) {
             updateProfile(user.value?.apply { picture = image.value ?: picture } ?: data) {
                 it.fold(::handleFailure) {
